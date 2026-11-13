@@ -1,0 +1,248 @@
+
+/* =========================
+   基本設定
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 30px 12px;
+  font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
+  background: transparent;
+  color: #60447f;
+}
+
+.history-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 10px;
+}
+
+/* =========================
+   タイトル
+========================= */
+
+.history-heading {
+  text-align: center;
+  margin-bottom: 55px;
+  position: relative;
+}
+
+.history-heading h1 {
+  margin: 8px 0;
+  font-family: Georgia, serif;
+  font-size: 27px;
+  letter-spacing: 4px;
+  color: #7955a5;
+}
+
+.history-heading p {
+  margin: 8px 0;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #b49acb;
+}
+
+.heading-decoration {
+  color: #dfc16a;
+  font-size: 15px;
+  margin: 0 8px;
+}
+
+/* =========================
+   タイムライン
+========================= */
+
+.timeline {
+  position: relative;
+}
+
+/* ゴールドの縦ライン */
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 103px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    #e8d18a,
+    #c8a4df,
+    #e8d18a
+  );
+  z-index: 0;
+}
+
+/* =========================
+   各経歴
+========================= */
+
+.history-item {
+  display: grid;
+  grid-template-columns: 88px 30px minmax(0, 1fr);
+  align-items: center;
+  position: relative;
+  margin-bottom: 35px;
+  min-height: 45px;
+}
+
+/* 年号 */
+
+.history-date {
+  text-align: right;
+  padding-right: 12px;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #c4a64e;
+  white-space: nowrap;
+}
+
+/* 二重丸 */
+
+.timeline-marker {
+  width: 13px;
+  height: 13px;
+  border: 2px solid #d7b957;
+  background: transparent;
+  border-radius: 50%;
+  justify-self: center;
+  z-index: 1;
+  position: relative;
+
+  box-shadow:
+    0 0 0 4px rgba(215, 185, 87, 0.12);
+}
+
+/* 経歴カード */
+
+.history-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 12px;
+  padding: 13px 15px;
+  background: rgba(244, 237, 252, 0.75);
+  border: 1px solid rgba(197, 171, 221, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(111, 76, 145, 0.07);
+  transition: 0.3s ease;
+}
+
+.history-content:hover {
+  transform: translateX(5px);
+  background: rgba(236, 224, 249, 0.95);
+  box-shadow: 0 5px 15px rgba(111, 76, 145, 0.13);
+}
+
+.history-content h2 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #694b89;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.history-icon {
+  color: #c9a84f;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+/* =========================
+   下部の装飾
+========================= */
+
+.history-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 45px;
+  color: #b69acb;
+}
+
+.history-footer p {
+  font-family: Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.history-footer span {
+  color: #d8b958;
+}
+
+/* =========================
+   スクロールアニメーション
+========================= */
+
+html.js .history-item {
+  opacity: 0;
+  transform: translateY(45px);
+
+  transition:
+    opacity 1s ease,
+    transform 1s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+html.js .history-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   スマホ対応
+========================= */
+
+@media (max-width: 420px) {
+
+  .history-section {
+    padding: 15px 0;
+  }
+
+  .history-heading h1 {
+    font-size: 23px;
+  }
+
+  .timeline::before {
+    left: 83.5px;
+  }
+
+  .history-item {
+    grid-template-columns: 69px 29px minmax(0, 1fr);
+    margin-bottom: 28px;
+  }
+
+  .history-date {
+    font-size: 11px;
+    padding-right: 8px;
+  }
+
+  .history-content {
+    margin-left: 8px;
+    padding: 11px 9px;
+    gap: 7px;
+  }
+
+  .history-content h2 {
+    font-size: 12px;
+  }
+}
+
+/* 動きを控えたい場合 */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html.js .history-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
